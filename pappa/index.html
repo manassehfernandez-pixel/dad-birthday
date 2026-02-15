@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Dad ❤️</title>
+
+<style>
+body{
+    margin:0;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+    text-align:center;
+}
+
+/* Heading */
+h1{
+    margin-top:30px;
+    font-size:45px;
+}
+h2{
+    color:gold;
+}
+
+/* Slideshow */
+.slideshow{
+    width:80%;
+    max-width:900px;
+    height:500px;
+    margin:40px auto;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 0 30px gold;
+}
+
+.slideshow img{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:none;
+    border-radius:20px;
+    z-index:2;
+}
+
+.slideshow img.active{
+    display:block;
+}
+
+.slideshow::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    filter:blur(220px);
+    transform:scale(1.2);
+    z-index:1;
+}
+
+
+/* Cake */
+.cake{
+    font-size:90px;
+    cursor:pointer;
+    margin-top:20px;
+    transition:0.4s;
+}
+.cake:hover{
+    transform:scale(1.2);
+}
+#cakeMsg{
+    font-size:20px;
+    margin-top:10px;
+}
+
+/* Button */
+button{
+    padding:12px 30px;
+    margin-top:25px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    background:gold;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background:white;
+}
+
+/* Envelope */
+.envelope{
+    width:220px;
+    height:140px;
+    background:#d4af37;
+    margin:40px auto;
+    position:relative;
+    cursor:pointer;
+    border-radius:10px;
+}
+.envelope:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-bottom:70px solid #b8962e;
+}
+.letter{
+    display:none;
+    max-width:600px;
+    margin:20px auto;
+    font-size:20px;
+    line-height:1.6;
+}
+
+/* Fireworks */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎂 Happy Birthday Dad 🎉</h1>
+<h2>My Hero • My Strength • My Inspiration</h2>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Slideshow -->
+<div class="slideshow">
+    <img src="dad1.jpg" class="active">
+    <img src="dad2.jpg">
+    <img src="dad3.jpg">
+</div>
+
+<!-- Cake -->
+<div class="cake" onclick="cutCake()">🎂</div>
+<p id="cakeMsg"></p>
+
+<!-- Fireworks Button -->
+<button onclick="startFireworks()">Celebrate Dad 🎆</button>
+
+<!-- Envelope -->
+<div class="envelope" onclick="openLetter()"></div>
+
+<div class="letter" id="letter">
+Dear Dad,<br><br>
+Thank you for every sacrifice you made for our family.  
+Your strength built my future.  
+Your love shaped who I am today.  
+No matter how old I grow, I will always look up to you.  
+I am proud to be your child. ❤️<br><br>
+Happy Birthday to the greatest father in the world.
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+/* Slideshow */
+let slides = document.querySelectorAll(".slideshow img");
+let current = 0;
+let slideshow = document.querySelector(".slideshow");
+
+function showSlide(index){
+    slides.forEach((img)=>{
+        img.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+
+    slideshow.style.backgroundImage = `url(${slides[index].src})`;
+    slideshow.style.backgroundSize = "cover";
+    slideshow.style.backgroundPosition = "center";
+}
+
+showSlide(0);
+
+setInterval(()=>{
+    current = (current + 1) % slides.length;
+    showSlide(current);
+},3000);
+
+
+/* Cake */
+function cutCake(){
+    document.getElementById("cakeMsg").innerHTML=
+    "🎉 Cake Cut! May your life be filled with health, happiness and peace ❤️";
+}
+
+/* Envelope */
+function openLetter(){
+    document.getElementById("letter").style.display="block";
+}
+
+/* Fireworks */
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function startFireworks(){
+    for(let i=0;i<150;i++){
+        let x=Math.random()*canvas.width;
+        let y=Math.random()*canvas.height/2;
+        let radius=Math.random()*4+2;
+        ctx.beginPath();
+        ctx.arc(x,y,radius,0,Math.PI*2);
+        ctx.fillStyle="gold";
+        ctx.fill();
+    }
+    setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1200);
+}
+</script>
+
+</body>
+</html>
