@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Birthday Pappa ❤️</title>
-
 <style>
 body{
     margin:0;
@@ -12,8 +11,6 @@ body{
     font-family:'Segoe UI',sans-serif;
     text-align:center;
 }
-
-/* Heading */
 h1{
     margin-top:30px;
     font-size:45px;
@@ -21,8 +18,6 @@ h1{
 h2{
     color:gold;
 }
-
-/* Slideshow */
 .slideshow{
     width:80%;
     max-width:900px;
@@ -33,7 +28,6 @@ h2{
     border-radius:20px;
     box-shadow:0 0 30px gold;
 }
-
 .slideshow img{
     position:absolute;
     width:100%;
@@ -43,11 +37,9 @@ h2{
     border-radius:20px;
     z-index:2;
 }
-
 .slideshow img.active{
     display:block;
 }
-
 .slideshow::before{
     content:"";
     position:absolute;
@@ -59,9 +51,6 @@ h2{
     transform:scale(1.2);
     z-index:1;
 }
-
-
-/* Cake */
 .cake{
     font-size:90px;
     cursor:pointer;
@@ -75,8 +64,6 @@ h2{
     font-size:20px;
     margin-top:10px;
 }
-
-/* Button */
 button{
     padding:12px 30px;
     margin-top:25px;
@@ -90,8 +77,6 @@ button{
 button:hover{
     background:white;
 }
-
-/* Envelope */
 .envelope{
     width:220px;
     height:140px;
@@ -119,8 +104,6 @@ button:hover{
     font-size:20px;
     line-height:1.6;
 }
-
-/* Fireworks */
 canvas{
     position:fixed;
     top:0;
@@ -129,18 +112,12 @@ canvas{
 }
 </style>
 </head>
-
 <body>
-
 <h1>🎂 Happy Birthday Pappa 🎉</h1>
 <h2>My Hero • My Strength • My Inspiration</h2>
-
-<!-- Background Music -->
 <audio id="bgMusic" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
-
-<!-- Slideshow -->
     <div id="startScreen" style="
     position: fixed;
     top: 0;
@@ -156,7 +133,6 @@ canvas{
     z-index: 9999;
 ">
     <h1>Happy Birthday Pappa ❤️</h1>
-    
     <button onclick="startWebsite()" style="
         padding: 15px 30px;
         font-size: 18px;
@@ -168,7 +144,6 @@ canvas{
         Enter Surprise 🎉
     </button>
 </div>
-
 <div class="slideshow">
     <img src="pappa.jpeg" class="active">
     <img src="dad9.jpeg">
@@ -179,17 +154,10 @@ canvas{
     <img src="dad5.jpg">
     <img src="dad6.jpg">
 </div>
-
-<!-- Cake -->
 <div class="cake" onclick="cutCake()">🎂</div>
 <p id="cakeMsg"></p>
-
-<!-- Fireworks Button -->
 <button onclick="startFireworks()"> Happy Birthday Pappa 🎆</button>
-
-<!-- Envelope -->
 <div class="envelope" onclick="openLetter()"></div>
-
 <div class="letter" id="letter">
 Dear Pappa,<br><br>
 Happy Birthday, Pappa! 🎉 On this special day,
@@ -215,9 +183,7 @@ Thank you for being my hero, my guide, and my Pappa.
 I love you more than words can express ❤️
  ❤️<br><br>
 Happy Birthday to the greatest father in the world.
-    
 </div>
-
 <canvas id="canvas"></canvas>
 <script>
 function startWebsite() {
@@ -225,50 +191,35 @@ function startWebsite() {
     document.getElementById("startScreen").style.display = "none";
 }
 </script>
-
 <script>
-/* Slideshow */
 let slides = document.querySelectorAll(".slideshow img");
 let current = 0;
 let slideshow = document.querySelector(".slideshow");
-
 function showSlide(index){
     slides.forEach((img)=>{
         img.classList.remove("active");
     });
-
     slides[index].classList.add("active");
-
     slideshow.style.backgroundImage = `url(${slides[index].src})`;
     slideshow.style.backgroundSize = "cover";
     slideshow.style.backgroundPosition = "center";
 }
-
 showSlide(0);
-
 setInterval(()=>{
     current = (current + 1) % slides.length;
     showSlide(current);
 },3000);
-
-
-/* Cake */
 function cutCake(){
     document.getElementById("cakeMsg").innerHTML=
     "🎉 May your life be filled with health, happiness and peace ❤️";
 }
-
-/* Envelope */
 function openLetter(){
     document.getElementById("letter").style.display="block";
 }
-
-/* Fireworks */
 const canvas=document.getElementById("canvas");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-
 function startFireworks(){
     for(let i=0;i<150;i++){
         let x=Math.random()*canvas.width;
@@ -282,23 +233,6 @@ function startFireworks(){
     setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1200);
 }
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
